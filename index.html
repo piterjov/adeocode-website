@@ -2878,6 +2878,304 @@
                 padding: 14px 32px;
             }
         }
+
+        /* ===================================
+           Final CTA Section
+           =================================== */
+        .final-cta-section {
+            background: #f3f4f5;
+            padding: 120px 0;
+        }
+
+        .final-cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        /* Left image card */
+        .final-cta-image-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 380px;
+            background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .final-cta-image-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .final-cta-image-overlay {
+            position: relative;
+            z-index: 2;
+            padding: 32px;
+        }
+
+        .final-cta-image-text {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Right dark callout card */
+        .final-cta-dark-card {
+            background: #111827;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .final-cta-dark-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .final-cta-dark-body {
+            font-size: 15px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+        }
+
+        .final-cta-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px 0;
+        }
+
+        .final-cta-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .final-cta-checklist li:last-child {
+            margin-bottom: 0;
+        }
+
+        .final-cta-check {
+            color: #10b981;
+            font-weight: 600;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+            background: #fff;
+            padding: 14px 28px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .final-cta-btn:hover,
+        .final-cta-btn:focus-visible {
+            background: #f3f4f6;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .final-cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta-image-card {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .final-cta-section {
+                padding: 80px 0;
+            }
+
+            .final-cta-image-text {
+                font-size: 24px;
+            }
+
+            .final-cta-dark-card {
+                padding: 32px;
+            }
+
+            .final-cta-dark-headline {
+                font-size: 24px;
+            }
+
+            .final-cta-btn {
+                align-self: center;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+        .site-footer {
+            background: #fff;
+            padding: 100px 0 60px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 80px;
+        }
+
+        /* Footer left - logo and description */
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-logo-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #111827;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .footer-logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #f3f4f5;
+            border-bottom-left-radius: 4px;
+        }
+
+        .footer-logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .footer-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        /* Footer link columns */
+        .footer-links-column {
+            min-width: 160px;
+        }
+
+        .footer-links-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links li:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-links a {
+            font-size: 15px;
+            color: #111827;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: #3b82f6;
+        }
+
+        /* Footer bottom */
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-footer {
+                padding: 80px 0 48px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+
+            .footer-brand {
+                max-width: none;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-links-column {
+                min-width: auto;
+            }
+
+            .footer-links-title {
+                margin-bottom: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -4038,7 +4336,107 @@
                 </div>
             </div>
         </section>
+
+        <!-- ===================================
+             Section: Final CTA
+             =================================== -->
+        <section class="final-cta-section">
+            <div class="container">
+                <div class="final-cta-grid">
+                    <!-- Left image card -->
+                    <div class="final-cta-image-card">
+                        <!-- Placeholder gradient background acts as image -->
+                        <div class="final-cta-image-overlay">
+                            <p class="final-cta-image-text">
+                                Too tight? Too loose?<br>
+                                Your business deserves a<br>
+                                perfect buttoned-up fit.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right dark callout card -->
+                    <div class="final-cta-dark-card">
+                        <h2 class="final-cta-dark-headline">
+                            Build the system your business has<br>
+                            been trying to duct-tape together.
+                        </h2>
+                        <p class="final-cta-dark-body">
+                            If your team is juggling spreadsheets, generic CRMs, and one more SaaS login than anyone can remember, you're already paying the price of custom software—you're just paying it in lost time and chaos.
+                        </p>
+                        <ul class="final-cta-checklist">
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">✓</span>
+                                <span>Replace 5–15 tools with one clean system</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">✓</span>
+                                <span>Automate workflows with AI & smart logic</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">✓</span>
+                                <span>Reduce errors, bottlenecks, and wasted time</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">✓</span>
+                                <span>Own something modern, easy to use and aesthetic</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="final-cta-btn">Book a 20-minute fit call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- ===================================
+         Footer
+         =================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Left: Brand -->
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <div class="footer-logo-icon" aria-hidden="true"></div>
+                        <span class="footer-logo-text">Adeo</span>
+                    </a>
+                    <p class="footer-description">
+                        Custom-built platforms, CRMs, and internal<br>
+                        tools tailored exactly to your workflow.
+                    </p>
+                </div>
+
+                <!-- Company links -->
+                <div class="footer-links-column">
+                    <h3 class="footer-links-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">ROI Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries links -->
+                <div class="footer-links-column">
+                    <h3 class="footer-links-title">Industries</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Startups & SaaS</a></li>
+                        <li><a href="#">Agencies</a></li>
+                        <li><a href="#">Manufacturing</a></li>
+                        <li><a href="#">Hospitality</a></li>
+                        <li><a href="#">Professional Services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 Adeocode. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // ===================================
