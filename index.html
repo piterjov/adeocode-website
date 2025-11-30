@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adeo - Custom Software for Growing Companies</title>
+    <style>
+        /* ===================================
+           Reset & Base Styles
+           =================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+            background-color: #f3f4f5;
+            color: #111827;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===================================
+           Container
+           =================================== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* ===================================
+           Floating Navbar
+           =================================== */
+        .nav-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+        }
+
+        .navbar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            background: #fff;
+            border-radius: 9999px;
+            padding: 12px 16px 12px 12px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Logo Group */
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 14px 6px 6px;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #111827;
+            border-radius: 4px;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background: #f3f4f5;
+            border-bottom-left-radius: 4px;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: #111827;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #111827;
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus-visible::after {
+            transform: scaleX(1);
+        }
+
+        /* Nav CTA Button */
+        .nav-cta {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover,
+        .nav-cta:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+        }
+
+        /* Navbar responsive */
+        @media (max-width: 900px) {
+            .navbar {
+                gap: 20px;
+                padding: 10px 14px 10px 10px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-cta {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                gap: 16px;
+            }
+        }
+
+        /* ===================================
+           Hero Section
+           =================================== */
+        .hero {
+            padding: 140px 0 120px;
+            min-height: 100vh;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        /* ===================================
+           Hero Left Column (Text)
+           =================================== */
+        .hero-content {
+            max-width: 540px;
+            position: sticky;
+            top: 140px;
+        }
+
+        /* Tagline Pill */
+        .tagline-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 20px;
+        }
+
+        .tagline-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .tagline-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        .tagline-chevron {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        /* Main Heading */
+        .hero-heading {
+            margin-bottom: 24px;
+        }
+
+        .hero-heading-line1 {
+            display: block;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #111827;
+        }
+
+        .hero-heading-line2 {
+            display: block;
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.2;
+            color: #111827;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 640px) {
+            .hero-heading-line1 {
+                font-size: 36px;
+            }
+
+            .hero-heading-line2 {
+                font-size: 34px;
+            }
+        }
+
+        /* Body Copy */
+        .hero-body {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 520px;
+            margin-bottom: 28px;
+        }
+
+        /* Button Row */
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            transition: background 0.2s ease;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
+            background: #f3f4f6;
+        }
+
+        @media (max-width: 640px) {
+            .button-row {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        /* ===================================
+           Vertical Ruler Column (Center)
+           =================================== */
+        .ruler-column {
+            position: sticky;
+            top: 140px;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ruler-track {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .ruler-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+        }
+
+        .ruler-progress {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 3px;
+            background: #111827;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            transition: height 0.1s ease-out;
+        }
+
+        .ruler-marks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .ruler-mark {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+        }
+
+        .ruler-number {
+            font-size: 10px;
+            font-weight: 500;
+            color: #d1d5db;
+            width: 16px;
+            text-align: right;
+            transition: color 0.2s ease;
+        }
+
+        .ruler-number.active {
+            color: #111827;
+        }
+
+        .ruler-dot {
+            width: 6px;
+            height: 6px;
+            background: #d1d5db;
+            border-radius: 50%;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .ruler-dot.active {
+            background: #111827;
+            transform: scale(1.3);
+        }
+
+        .ruler-indicator {
+            position: absolute;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: #111827;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 8px rgba(17, 24, 39, 0.3);
+            transition: top 0.1s ease-out;
+        }
+
+        @media (max-width: 900px) {
+            .ruler-column {
+                display: none;
+            }
+        }
+
+        /* ===================================
+           Hero Right Column (Screenshot Slider)
+           =================================== */
+        .screenshot-slider {
+            position: relative;
+        }
+
+        .screenshot-card {
+            background: #f9fafb;
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18);
+            padding: 24px;
+            margin-bottom: 32px;
+            opacity: 0.4;
+            transform: scale(0.95);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .screenshot-card.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .screenshot-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .screenshot-inner {
+            width: 100%;
+            min-height: 280px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
+
+        /* Different gradients for each card */
+        .screenshot-card:nth-child(1) .screenshot-inner {
+            background: linear-gradient(to bottom, #dbeafe, #eff6ff);
+        }
+
+        .screenshot-card:nth-child(2) .screenshot-inner {
+            background: linear-gradient(to bottom, #dcfce7, #f0fdf4);
+        }
+
+        .screenshot-card:nth-child(3) .screenshot-inner {
+            background: linear-gradient(to bottom, #fef3c7, #fffbeb);
+        }
+
+        .screenshot-card:nth-child(4) .screenshot-inner {
+            background: linear-gradient(to bottom, #fce7f3, #fdf2f8);
+        }
+
+        /* UI Card Inside Screenshot */
+        .ui-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+            padding: 28px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .ui-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .ui-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .ui-card:nth-child(1) .ui-card-icon,
+        .screenshot-card:nth-child(1) .ui-card-icon {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .screenshot-card:nth-child(2) .ui-card-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .screenshot-card:nth-child(3) .ui-card-icon {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .screenshot-card:nth-child(4) .ui-card-icon {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+        }
+
+        .ui-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .ui-card-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .ui-card-body-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .ui-card-body-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .ui-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px 16px;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .screenshot-card:nth-child(1) .ui-card-btn {
+            background: #2563eb;
+        }
+
+        .screenshot-card:nth-child(2) .ui-card-btn {
+            background: #059669;
+        }
+
+        .screenshot-card:nth-child(3) .ui-card-btn {
+            background: #d97706;
+        }
+
+        .screenshot-card:nth-child(4) .ui-card-btn {
+            background: #db2777;
+        }
+
+        .ui-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .ui-card-footer-line {
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .ui-card-footer-text {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 900px) {
+            .screenshot-slider {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .screenshot-card {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ===================================
+           Section: "You're bleeding time..."
+           =================================== */
+
+        /* Section wrapper */
+        .cost-section {
+            padding: 120px 0 140px;
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* Left column */
+        .cost-content {
+            max-width: 600px;
+        }
+
+        /* Badge */
+        .cost-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .cost-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .cost-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Headline */
+        .cost-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #111827;
+            margin-bottom: 28px;
+            max-width: 650px;
+        }
+
+        .cost-headline-emphasis {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Body paragraphs */
+        .cost-body p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .cost-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cost-body {
+            margin-bottom: 32px;
+        }
+
+        /* CTA Button */
+        .cost-cta {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cost-cta:hover,
+        .cost-cta:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .cost-cta:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Card container */
+        .cost-card {
+            background: #fff;
+            border-radius: 26px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            padding: 32px 32px 40px;
+        }
+
+        .cost-card-header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cost-card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111827;
+            margin: 0;
+        }
+
+        /* Metrics row */
+        .cost-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .cost-metric {
+            text-align: center;
+        }
+
+        .cost-metric-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .cost-metric-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .cost-metric-desc {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #6b7280;
+        }
+
+        /* Gauge visualization */
+        .gauge-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gauge {
+            position: relative;
+            width: 280px;
+            height: 140px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .gauge-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 280px;
+            height: 140px;
+            border-radius: 140px 140px 0 0;
+            background: #e5e7eb;
+        }
+
+        .gauge-segments {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 280px;
+            height: 140px;
+            transform: translateX(-50%);
+        }
+
+        .gauge-segment {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 140px;
+            height: 140px;
+            transform-origin: bottom left;
+            border-radius: 140px 0 0 0;
+        }
+
+        .gauge-segment-1 {
+            background: #7f1d1d;
+            transform: rotate(-90deg);
+        }
+
+        .gauge-segment-2 {
+            background: #b91c1c;
+            transform: rotate(-54deg);
+        }
+
+        .gauge-segment-3 {
+            background: #dc2626;
+            transform: rotate(-18deg);
+        }
+
+        .gauge-segment-4 {
+            background: #f97316;
+            transform: rotate(18deg);
+        }
+
+        .gauge-segment-5 {
+            background: #fbbf24;
+            transform: rotate(54deg);
+        }
+
+        .gauge-segment-6 {
+            background: #fef3c7;
+            transform: rotate(90deg);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .gauge-inner {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100px;
+            background: #fff;
+            border-radius: 100px 100px 0 0;
+        }
+
+        .gauge-needle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            height: 100px;
+            background: #111827;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(-25deg);
+            border-radius: 2px;
+        }
+
+        .gauge-needle::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .gauge-content {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 180px;
+        }
+
+        .gauge-percentage {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .gauge-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .gauge-caption {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #6b7280;
+            text-align: center;
+            max-width: 260px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cost-section {
+                padding: 80px 0 100px;
+            }
+
+            .cost-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .cost-headline {
+                font-size: 36px;
+            }
+
+            .cost-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .cost-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cost-metric:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cost-headline {
+                font-size: 32px;
+            }
+
+            .cost-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .cost-metric:last-child {
+                grid-column: auto;
+            }
+
+            .gauge {
+                width: 240px;
+                height: 120px;
+            }
+
+            .gauge-bg {
+                width: 240px;
+                height: 120px;
+                border-radius: 120px 120px 0 0;
+            }
+
+            .gauge-segments {
+                width: 240px;
+                height: 120px;
+            }
+
+            .gauge-segment {
+                width: 120px;
+                height: 120px;
+            }
+
+            .gauge-inner {
+                width: 170px;
+                height: 85px;
+                border-radius: 85px 85px 0 0;
+            }
+
+            .gauge-needle {
+                height: 85px;
+            }
+        }
+
+        /* ===================================
+           Section: "Custom software that pays for itself..."
+           =================================== */
+
+        /* Section wrapper */
+        .roi-section {
+            background: linear-gradient(to bottom, #e8f2fc, #d8eafb);
+            padding: 120px 0;
+        }
+
+        .roi-inner {
+            text-align: center;
+        }
+
+        /* Badge */
+        .roi-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .roi-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .roi-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Headline */
+        .roi-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.15;
+            color: #111827;
+            margin: 0 auto 24px;
+            max-width: 800px;
+        }
+
+        .roi-headline-emphasis {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Subheading */
+        .roi-subheading {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto 56px;
+        }
+
+        /* Cards grid */
+        .roi-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        /* Individual card */
+        .roi-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            padding: 28px;
+            text-align: left;
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .roi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.16);
+        }
+
+        .roi-card.highlighted {
+            border: 2px solid #3b82f6;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12), 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .roi-card.highlighted:hover {
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.16), 0 0 0 6px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Card icon */
+        .roi-card-icon {
+            width: 40px;
+            height: 40px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .roi-card-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #374151;
+        }
+
+        /* Card title */
+        .roi-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        /* Card body */
+        .roi-card-body {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        /* Card footnote box */
+        .roi-card-footnote {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .roi-cards {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .roi-section {
+                padding: 80px 0;
+            }
+
+            .roi-headline {
+                font-size: 34px;
+            }
+
+            .roi-subheading {
+                margin-bottom: 40px;
+            }
+
+            .roi-cards {
+                gap: 24px;
+            }
+        }
+
+        /* ===================================
+           Section: "One platform that runs your operations..."
+           =================================== */
+
+        /* Section wrapper */
+        .platform-section {
+            background: #f3f4f5;
+            padding: 120px 0;
+        }
+
+        .platform-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        /* Badge */
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .platform-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .platform-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Headline */
+        .platform-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #111827;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .platform-headline-emphasis {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Two-column intro */
+        .platform-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 80px;
+        }
+
+        .platform-intro-block h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .platform-intro-block p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        /* Roadmap card */
+        .roadmap-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            border: 1px solid #eef2f6;
+            padding: 24px;
+            max-width: 460px;
+        }
+
+        .roadmap-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .roadmap-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .roadmap-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .roadmap-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-desc {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #6b7280;
+        }
+
+        .roadmap-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .roadmap-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .roadmap-status.done {
+            color: #16a34a;
+        }
+
+        .roadmap-status.done .roadmap-status-dot {
+            background: #16a34a;
+        }
+
+        .roadmap-status.in-progress {
+            color: #2563eb;
+        }
+
+        .roadmap-status.in-progress .roadmap-status-dot {
+            background: #2563eb;
+        }
+
+        .roadmap-status.backlog {
+            color: #9ca3af;
+        }
+
+        .roadmap-status.backlog .roadmap-status-dot {
+            background: #9ca3af;
+        }
+
+        /* Bottom features grid */
+        .platform-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .platform-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .platform-feature-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #374151;
+        }
+
+        .platform-feature h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .platform-feature p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .platform-intro {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .roadmap-card {
+                max-width: 100%;
+            }
+
+            .platform-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .platform-section {
+                padding: 80px 0;
+            }
+
+            .platform-headline {
+                font-size: 34px;
+            }
+
+            .platform-intro {
+                margin-bottom: 56px;
+            }
+
+            .platform-features {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        /* ===================================
+           Section: Case Studies Slider
+           =================================== */
+
+        /* Section wrapper */
+        .cases-section {
+            background: #f3f4f5;
+            padding: 120px 0 0;
+        }
+
+        .cases-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        /* Badge */
+        .cases-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .cases-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .cases-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Headline */
+        .cases-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #111827;
+            margin: 0 auto 24px;
+            max-width: 800px;
+        }
+
+        .cases-headline-emphasis {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Subtext */
+        .cases-subtext {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main layout */
+        .cases-layout {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 48px;
+            position: relative;
+        }
+
+        /* Ruler styles */
+        .cases-ruler {
+            position: sticky;
+            top: 120px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cases-ruler-track {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .cases-ruler-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+        }
+
+        .cases-ruler-marks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .cases-ruler-mark {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cases-ruler-number {
+            font-size: 10px;
+            font-weight: 500;
+            color: #d1d5db;
+            width: 20px;
+            text-align: right;
+            transition: color 0.3s ease;
+        }
+
+        .cases-ruler-dot {
+            width: 6px;
+            height: 6px;
+            background: #d1d5db;
+            border-radius: 50%;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Active ruler states via scroll */
+        .cases-ruler-mark[data-slide="1"] .cases-ruler-number,
+        .cases-ruler-mark[data-slide="1"] .cases-ruler-dot {
+            color: #111827;
+            background: #111827;
+        }
+
+        /* Scroll-snap container */
+        .cases-slides {
+            scroll-snap-type: y mandatory;
+            overflow-y: auto;
+            height: 600px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cases-slides::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .cases-slides::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+
+        .cases-slides::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 2px;
+        }
+
+        /* Slide block */
+        .case-slide {
+            scroll-snap-align: start;
+            min-height: 600px;
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* Tag pills */
+        .case-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .case-tag {
+            display: inline-flex;
+            align-items: center;
+            background: #e5e7eb;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Case content */
+        .case-content h3 {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .case-subheadline {
+            font-size: 18px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+
+        .case-description {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #6b7280;
+            margin-bottom: 28px;
+            max-width: 480px;
+        }
+
+        /* CTA button */
+        .case-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .case-cta:hover,
+        .case-cta:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .case-cta:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Case study card */
+        .case-card {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            border: 1px solid #eef2f6;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .case-card-preview {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .case-card-placeholder {
+            font-size: 13px;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        .case-card-caption {
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        /* Slide navigation dots */
+        .cases-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 32px 0 80px;
+        }
+
+        .cases-nav-dot {
+            width: 10px;
+            height: 10px;
+            background: #d1d5db;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .cases-nav-dot:hover {
+            background: #9ca3af;
+            transform: scale(1.2);
+        }
+
+        .cases-nav-dot.active,
+        .cases-nav-dot:focus {
+            background: #111827;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .cases-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cases-ruler {
+                display: none;
+            }
+
+            .cases-slides {
+                height: auto;
+                overflow: visible;
+                scroll-snap-type: none;
+            }
+
+            .case-slide {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 48px 0;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .case-slide:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cases-section {
+                padding: 80px 0 0;
+            }
+
+            .cases-headline {
+                font-size: 34px;
+            }
+
+            .case-content h3 {
+                font-size: 26px;
+            }
+
+            .case-subheadline {
+                font-size: 16px;
+            }
+
+            .case-card-preview {
+                height: 200px;
+            }
+
+            .case-cta {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===================================
+         Floating Navbar
+         =================================== -->
+    <div class="nav-wrapper">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <!-- Logo Group -->
+            <a href="#" class="logo-group" aria-label="Adeo Home">
+                <div class="logo-icon"></div>
+                <span class="logo-text">Adeo</span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="nav-links">
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Case Studies</a>
+            </div>
+
+            <!-- Nav CTA -->
+            <a href="#" class="nav-cta">Book a Free Strategy Call</a>
+        </nav>
+    </div>
+
+    <!-- ===================================
+         Hero Section
+         =================================== -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <!-- Left Column: Text Content -->
+                    <div class="hero-content">
+                        <!-- Tagline Pill -->
+                        <div class="tagline-pill">
+                            <span class="tagline-dot"></span>
+                            <span class="tagline-text">CUSTOM SOFTWARE FOR GROWING COMPANIES</span>
+                            <span class="tagline-chevron">&gt;</span>
+                        </div>
+
+                        <!-- Main Heading -->
+                        <h1 class="hero-heading">
+                            <span class="hero-heading-line1">Can't find software that fits your business?</span>
+                            <span class="hero-heading-line2">We'll build it.</span>
+                        </h1>
+
+                        <!-- Body Copy -->
+                        <p class="hero-body">
+                            Adeocode designs and builds custom internal platforms, CRMs, and operational tools for teams that have outgrown spreadsheets and off-the-shelf SaaS. Ideal for companies ready to invest in a serious build that actually matches how they work.
+                        </p>
+
+                        <!-- Button Row -->
+                        <div class="button-row">
+                            <a href="#" class="btn-primary">Book a 20-minute project fit call</a>
+                            <a href="#" class="btn-secondary">See what we've built for teams like yours</a>
+                        </div>
+                    </div>
+
+                    <!-- Center Column: Vertical Ruler (Scroll Indicator) -->
+                    <div class="ruler-column">
+                        <div class="ruler-track">
+                            <div class="ruler-line"></div>
+                            <div class="ruler-progress" id="rulerProgress"></div>
+                            <div class="ruler-indicator" id="rulerIndicator"></div>
+                            <div class="ruler-marks">
+                                <div class="ruler-mark" data-index="0">
+                                    <span class="ruler-number active">01</span>
+                                    <span class="ruler-dot active"></span>
+                                </div>
+                                <div class="ruler-mark" data-index="1">
+                                    <span class="ruler-number">02</span>
+                                    <span class="ruler-dot"></span>
+                                </div>
+                                <div class="ruler-mark" data-index="2">
+                                    <span class="ruler-number">03</span>
+                                    <span class="ruler-dot"></span>
+                                </div>
+                                <div class="ruler-mark" data-index="3">
+                                    <span class="ruler-number">04</span>
+                                    <span class="ruler-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Screenshot Slider -->
+                    <div class="screenshot-slider" id="screenshotSlider">
+                        <!-- Card 1: Harbor Tax -->
+                        <div class="screenshot-card active" data-index="0">
+                            <div class="screenshot-inner">
+                                <div class="ui-card">
+                                    <div class="ui-card-header">
+                                        <div class="ui-card-icon"></div>
+                                        <div>
+                                            <div class="ui-card-title">Harbor Tax</div>
+                                            <div class="ui-card-subtitle">Tax Management</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui-card-body-title">Welcome back</div>
+                                    <div class="ui-card-body-text">Sign in to your account to continue</div>
+                                    <a href="#" class="ui-card-btn">Sign in with Passkey</a>
+                                    <div class="ui-card-footer">
+                                        <span class="ui-card-footer-line"></span>
+                                        <span class="ui-card-footer-text">or use email</span>
+                                        <span class="ui-card-footer-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: GreenOps -->
+                        <div class="screenshot-card" data-index="1">
+                            <div class="screenshot-inner">
+                                <div class="ui-card">
+                                    <div class="ui-card-header">
+                                        <div class="ui-card-icon"></div>
+                                        <div>
+                                            <div class="ui-card-title">GreenOps</div>
+                                            <div class="ui-card-subtitle">Operations Platform</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui-card-body-title">Dashboard</div>
+                                    <div class="ui-card-body-text">Track your team's performance in real-time</div>
+                                    <a href="#" class="ui-card-btn">View Analytics</a>
+                                    <div class="ui-card-footer">
+                                        <span class="ui-card-footer-line"></span>
+                                        <span class="ui-card-footer-text">updated 2m ago</span>
+                                        <span class="ui-card-footer-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: FleetSync -->
+                        <div class="screenshot-card" data-index="2">
+                            <div class="screenshot-inner">
+                                <div class="ui-card">
+                                    <div class="ui-card-header">
+                                        <div class="ui-card-icon"></div>
+                                        <div>
+                                            <div class="ui-card-title">FleetSync</div>
+                                            <div class="ui-card-subtitle">Logistics CRM</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui-card-body-title">Active Routes</div>
+                                    <div class="ui-card-body-text">12 vehicles currently en route</div>
+                                    <a href="#" class="ui-card-btn">Manage Fleet</a>
+                                    <div class="ui-card-footer">
+                                        <span class="ui-card-footer-line"></span>
+                                        <span class="ui-card-footer-text">3 deliveries pending</span>
+                                        <span class="ui-card-footer-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: MedPortal -->
+                        <div class="screenshot-card" data-index="3">
+                            <div class="screenshot-inner">
+                                <div class="ui-card">
+                                    <div class="ui-card-header">
+                                        <div class="ui-card-icon"></div>
+                                        <div>
+                                            <div class="ui-card-title">MedPortal</div>
+                                            <div class="ui-card-subtitle">Patient Management</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui-card-body-title">Appointments</div>
+                                    <div class="ui-card-body-text">8 scheduled for today</div>
+                                    <a href="#" class="ui-card-btn">View Schedule</a>
+                                    <div class="ui-card-footer">
+                                        <span class="ui-card-footer-line"></span>
+                                        <span class="ui-card-footer-text">next in 15 min</span>
+                                        <span class="ui-card-footer-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Section: "You're bleeding time..."
+             =================================== -->
+        <section class="cost-section">
+            <div class="container">
+                <div class="cost-grid">
+                    <!-- Left column -->
+                    <div class="cost-content">
+                        <!-- Badge -->
+                        <div class="cost-badge">
+                            <span class="cost-badge-dot"></span>
+                            <span class="cost-badge-text">THE REAL COST OF "GOOD ENOUGH" SOFTWARE</span>
+                        </div>
+
+                        <!-- Headline -->
+                        <h2 class="cost-headline">
+                            You're bleeding <span class="cost-headline-emphasis">time, money, and momentum</span> on tools that don't match your business.
+                        </h2>
+
+                        <!-- Body paragraphs -->
+                        <div class="cost-body">
+                            <p>Most teams grow faster than their software. You patch things with spreadsheets, Zapier zaps, and a stack of SaaS tools that kind of work—until they don't.</p>
+                            <p>By then, you're paying thousands a month, your team is double-entering data, and critical workflows still live in someone's head.</p>
+                            <p>We help you replace that mess with one platform designed around how your business actually runs.</p>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <a href="#" class="cost-cta">Audit my current stack</a>
+                    </div>
+
+                    <!-- Right column: Card -->
+                    <div class="cost-card">
+                        <!-- Card header -->
+                        <div class="cost-card-header">
+                            <h3 class="cost-card-title">The SaaS Trap, Visualized</h3>
+                        </div>
+
+                        <!-- Metrics row -->
+                        <div class="cost-metrics">
+                            <div class="cost-metric">
+                                <div class="cost-metric-value">$47K / year</div>
+                                <div class="cost-metric-label">Subscription overhead</div>
+                                <div class="cost-metric-desc">Ongoing cost of renting core tools (CRM, analytics, automations).</div>
+                            </div>
+                            <div class="cost-metric">
+                                <div class="cost-metric-value">18h / month lost</div>
+                                <div class="cost-metric-label">Workflow friction</div>
+                                <div class="cost-metric-desc">Time wasted adapting to rigid features and manual exports.</div>
+                            </div>
+                            <div class="cost-metric">
+                                <div class="cost-metric-value">14 avg. tools</div>
+                                <div class="cost-metric-label">Locked-in vendors</div>
+                                <div class="cost-metric-desc">Each with different logins, contracts, and data silos.</div>
+                            </div>
+                        </div>
+
+                        <!-- Gauge visualization -->
+                        <div class="gauge-container">
+                            <div class="gauge">
+                                <div class="gauge-bg"></div>
+                                <div class="gauge-segments">
+                                    <div class="gauge-segment gauge-segment-1"></div>
+                                    <div class="gauge-segment gauge-segment-2"></div>
+                                    <div class="gauge-segment gauge-segment-3"></div>
+                                    <div class="gauge-segment gauge-segment-4"></div>
+                                    <div class="gauge-segment gauge-segment-5"></div>
+                                    <div class="gauge-segment gauge-segment-6"></div>
+                                </div>
+                                <div class="gauge-inner"></div>
+                                <div class="gauge-needle"></div>
+                                <div class="gauge-content">
+                                    <div class="gauge-percentage">73%</div>
+                                    <div class="gauge-label">Process Inefficiency</div>
+                                </div>
+                            </div>
+                            <p class="gauge-caption">The average company uses less than a third of what they pay for.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Section: "Custom software that pays for itself..."
+             =================================== -->
+        <section class="roi-section">
+            <div class="container">
+                <div class="roi-inner">
+                    <!-- Badge -->
+                    <div class="roi-badge">
+                        <span class="roi-badge-dot"></span>
+                        <span class="roi-badge-text">RETURN ON BUILD</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h2 class="roi-headline">
+                        Custom software that <span class="roi-headline-emphasis">pays for itself in months,</span> not years.
+                    </h2>
+
+                    <!-- Subheading -->
+                    <p class="roi-subheading">
+                        We only take on projects where we can clearly see a path to ROI—through reduced headcount, fewer errors, or more revenue per customer.
+                    </p>
+
+                    <!-- Cards grid -->
+                    <div class="roi-cards">
+                        <!-- Card 1 -->
+                        <div class="roi-card">
+                            <div class="roi-card-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="roi-card-title">Free your team from manual work</h3>
+                            <p class="roi-card-body">Automate the repetitive stuff — your team gets 10–30 hours back each month.</p>
+                            <div class="roi-card-footnote">
+                                CLIENTS TYPICALLY RECLAIM 10–30 HOURS PER EMPLOYEE PER MONTH.
+                            </div>
+                        </div>
+
+                        <!-- Card 2 (highlighted) -->
+                        <div class="roi-card highlighted">
+                            <div class="roi-card-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="roi-card-title">See everything in one place</h3>
+                            <p class="roi-card-body">One source of truth for customers, jobs, inventory, and revenue.</p>
+                            <div class="roi-card-footnote">
+                                FASTER DECISIONS. BETTER FORECASTING. FEWER SURPRISES.
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="roi-card">
+                            <div class="roi-card-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="roi-card-title">Grow without hiring more coordinators</h3>
+                            <p class="roi-card-body">A well-designed system lets you scale without ballooning headcount.</p>
+                            <div class="roi-card-footnote">
+                                2–3X OPERATIONAL CAPACITY FROM EACH BUILD.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Section: "One platform that runs your operations..."
+             =================================== -->
+        <section class="platform-section">
+            <div class="container">
+                <!-- Header -->
+                <div class="platform-header">
+                    <!-- Badge -->
+                    <div class="platform-badge">
+                        <span class="platform-badge-dot"></span>
+                        <span class="platform-badge-text">YOUR COMPANY'S OPERATING SYSTEM</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h2 class="platform-headline">
+                        One platform that runs your operations <span class="platform-headline-emphasis">end-to-end.</span>
+                    </h2>
+                </div>
+
+                <!-- Two-column intro -->
+                <div class="platform-intro">
+                    <!-- Left column -->
+                    <div class="platform-intro-block">
+                        <h3>Your operations, modeled as a system</h3>
+                        <p>We turn your workflows into structured logic — roles, data paths, and automations that work together like a neural map of your business.</p>
+                    </div>
+
+                    <!-- Right column with roadmap card -->
+                    <div class="platform-intro-block">
+                        <h3>Custom-Built from the first step</h3>
+                        <p>From the roadmap to the product blueprint, every decision is tailored to your business — ensuring the final platform feels natural to your team from day one.</p>
+
+                        <!-- Roadmap card -->
+                        <div class="roadmap-card">
+                            <div class="roadmap-title">Your SaaS Development Roadmap</div>
+
+                            <div class="roadmap-item">
+                                <div>
+                                    <div class="roadmap-label">Strategy Call</div>
+                                    <div class="roadmap-desc">Clarifying goals, challenges, and the core outline.</div>
+                                </div>
+                                <div class="roadmap-status done">
+                                    <span class="roadmap-status-dot"></span>
+                                    done
+                                </div>
+                            </div>
+
+                            <div class="roadmap-item">
+                                <div>
+                                    <div class="roadmap-label">Market & Workflow Analysis</div>
+                                    <div class="roadmap-desc">Reviewing your current processes, tools, and workflows.</div>
+                                </div>
+                                <div class="roadmap-status done">
+                                    <span class="roadmap-status-dot"></span>
+                                    done
+                                </div>
+                            </div>
+
+                            <div class="roadmap-item">
+                                <div>
+                                    <div class="roadmap-label">Product Blueprint</div>
+                                    <div class="roadmap-desc">Defining the system architecture: features, data flows, and automations.</div>
+                                </div>
+                                <div class="roadmap-status in-progress">
+                                    <span class="roadmap-status-dot"></span>
+                                    In Progress
+                                </div>
+                            </div>
+
+                            <div class="roadmap-item">
+                                <div>
+                                    <div class="roadmap-label">Technical Scoping</div>
+                                    <div class="roadmap-desc">Detailed technical specifications and timeline.</div>
+                                </div>
+                                <div class="roadmap-status backlog">
+                                    <span class="roadmap-status-dot"></span>
+                                    backlog
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom features grid -->
+                <div class="platform-features">
+                    <!-- Feature 1 -->
+                    <div class="platform-feature">
+                        <div class="platform-feature-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                        </div>
+                        <h3>Production-ready foundation</h3>
+                        <p>Auth, permissions, environments, and deployments come built-in, so we start from day one on what makes your product unique.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="platform-feature">
+                        <div class="platform-feature-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                        </div>
+                        <h3>Built to scale and change</h3>
+                        <p>The architecture comfortably supports new users, features, and integrations as your business grows and evolves.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="platform-feature">
+                        <div class="platform-feature-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <h3>Easy to maintain & extend</h3>
+                        <p>Clean structure, documentation, and tests make future changes safe and fast—whether we ship them or your in-house team does.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="platform-feature">
+                        <div class="platform-feature-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3>Secure by design</h3>
+                        <p>Your platform is built on strong defaults for access control, data security, and safe integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Section: Case Studies Slider
+             =================================== -->
+        <section class="cases-section">
+            <div class="container">
+                <!-- Header -->
+                <div class="cases-header">
+                    <!-- Badge -->
+                    <div class="cases-badge">
+                        <span class="cases-badge-dot"></span>
+                        <span class="cases-badge-text">RECENT BUILDS</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h2 class="cases-headline">
+                        Selected projects where custom software <span class="cases-headline-emphasis">changed the game.</span>
+                    </h2>
+
+                    <!-- Subtext -->
+                    <p class="cases-subtext">
+                        From branding to websites and no-code development, we help visionary teams design, build, and launch digital products—fast.
+                    </p>
+                </div>
+
+                <!-- Main layout -->
+                <div class="cases-layout">
+                    <!-- Left ruler -->
+                    <div class="cases-ruler">
+                        <div class="cases-ruler-track">
+                            <div class="cases-ruler-line"></div>
+                            <div class="cases-ruler-marks">
+                                <div class="cases-ruler-mark" data-slide="1">
+                                    <span class="cases-ruler-number">0</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark" data-slide="1">
+                                    <span class="cases-ruler-number">10</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark" data-slide="1">
+                                    <span class="cases-ruler-number">20</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">30</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">40</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">50</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">60</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">70</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">80</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                                <div class="cases-ruler-mark">
+                                    <span class="cases-ruler-number">90</span>
+                                    <span class="cases-ruler-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right slides container -->
+                    <div class="cases-slides" id="casesSlides">
+                        <!-- Slide 1: Harbor Tax -->
+                        <div class="case-slide" id="slide1">
+                            <div class="case-content">
+                                <div class="case-tags">
+                                    <span class="case-tag">HARBOUR TAX</span>
+                                    <span class="case-tag">SAAS</span>
+                                    <span class="case-tag">B2B</span>
+                                </div>
+                                <h3>Tax tracking CRM</h3>
+                                <p class="case-subheadline">From spreadsheet chaos to a clear pipeline.</p>
+                                <p class="case-description">We built a custom CRM and workflow engine for a tax firm drowning in spreadsheets. Result: fewer missed follow-ups, faster turnaround, and total visibility.</p>
+                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                            </div>
+                            <div class="case-card">
+                                <div class="case-card-preview">
+                                    <span class="case-card-placeholder">[ Screenshot Placeholder ]</span>
+                                </div>
+                                <p class="case-card-caption">HarborTax CRM Interface (Placeholder)</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: AI Fulfillment -->
+                        <div class="case-slide" id="slide2">
+                            <div class="case-content">
+                                <div class="case-tags">
+                                    <span class="case-tag">AI AUTOMATION</span>
+                                    <span class="case-tag">OPERATIONS</span>
+                                    <span class="case-tag">B2B</span>
+                                </div>
+                                <h3>AI-Driven Fulfillment Dashboard</h3>
+                                <p class="case-subheadline">Real-time visibility, fewer errors, faster throughput.</p>
+                                <p class="case-description">We designed a custom AI-powered fulfillment engine that synchronizes orders, inventory, and routing. The result: 40% fewer fulfillment errors and 2× throughput capacity.</p>
+                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                            </div>
+                            <div class="case-card">
+                                <div class="case-card-preview">
+                                    <span class="case-card-placeholder">[ Screenshot Placeholder ]</span>
+                                </div>
+                                <p class="case-card-caption">Fulfillment Dashboard (Placeholder)</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Underwriting -->
+                        <div class="case-slide" id="slide3">
+                            <div class="case-content">
+                                <div class="case-tags">
+                                    <span class="case-tag">FINTECH</span>
+                                    <span class="case-tag">WORKFLOW AUTOMATION</span>
+                                    <span class="case-tag">INTERNAL TOOLING</span>
+                                </div>
+                                <h3>Underwriting Workflow OS</h3>
+                                <p class="case-subheadline">Replace spreadsheets with a structured underwriting pipeline.</p>
+                                <p class="case-description">A cross-team underwriting workflow with automated status updates, document routing, and audit trails—purpose-built for financial operations.</p>
+                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                            </div>
+                            <div class="case-card">
+                                <div class="case-card-preview">
+                                    <span class="case-card-placeholder">[ Screenshot Placeholder ]</span>
+                                </div>
+                                <p class="case-card-caption">Underwriting System (Placeholder)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation dots -->
+                <div class="cases-nav">
+                    <a href="#slide1" class="cases-nav-dot active" aria-label="View slide 1"></a>
+                    <a href="#slide2" class="cases-nav-dot" aria-label="View slide 2"></a>
+                    <a href="#slide3" class="cases-nav-dot" aria-label="View slide 3"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ===================================
+        // Scroll-linked ruler and card activation
+        // ===================================
+        (function() {
+            const slider = document.getElementById('screenshotSlider');
+            const cards = slider.querySelectorAll('.screenshot-card');
+            const rulerProgress = document.getElementById('rulerProgress');
+            const rulerIndicator = document.getElementById('rulerIndicator');
+            const rulerMarks = document.querySelectorAll('.ruler-mark');
+            const rulerColumn = document.querySelector('.ruler-column');
+
+            function updateRuler() {
+                const sliderRect = slider.getBoundingClientRect();
+                const rulerRect = rulerColumn.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                // Calculate scroll progress through the slider section
+                const sliderTop = sliderRect.top;
+                const sliderHeight = sliderRect.height;
+                const triggerPoint = viewportHeight * 0.4; // 40% from top of viewport
+
+                // Progress from 0 to 1 as user scrolls through slider
+                let progress = (triggerPoint - sliderTop) / (sliderHeight - viewportHeight + triggerPoint);
+                progress = Math.max(0, Math.min(1, progress));
+
+                // Update ruler progress bar height
+                const rulerHeight = rulerColumn.offsetHeight;
+                rulerProgress.style.height = (progress * rulerHeight) + 'px';
+
+                // Update indicator position
+                rulerIndicator.style.top = (progress * (rulerHeight - 12)) + 'px';
+
+                // Determine which card should be active
+                const activeIndex = Math.min(Math.floor(progress * cards.length), cards.length - 1);
+
+                // Update cards
+                cards.forEach((card, index) => {
+                    if (index === activeIndex) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+
+                // Update ruler marks
+                rulerMarks.forEach((mark, index) => {
+                    const number = mark.querySelector('.ruler-number');
+                    const dot = mark.querySelector('.ruler-dot');
+
+                    if (index <= activeIndex) {
+                        number.classList.add('active');
+                        dot.classList.add('active');
+                    } else {
+                        number.classList.remove('active');
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            // Throttle scroll events for performance
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateRuler();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // Initial call
+            updateRuler();
+        })();
+    </script>
+</body>
+</html>
