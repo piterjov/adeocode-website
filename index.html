@@ -1784,6 +1784,258 @@
                 justify-content: center;
             }
         }
+
+        /* ===================================
+           Section: Timeline / 8 Weeks
+           =================================== */
+
+        /* Section wrapper */
+        .timeline-section {
+            background: #f3f4f5;
+            padding: 120px 0 140px;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        /* Badge */
+        .timeline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .timeline-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        /* Headline */
+        .timeline-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #111827;
+            margin: 0 auto 20px;
+            max-width: 800px;
+        }
+
+        .timeline-headline-emphasis {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Subtext */
+        .timeline-subtext {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Timeline labels row */
+        .timeline-labels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        /* Horizontal line behind nodes */
+        .timeline-labels::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: calc(16.67% + 40px);
+            right: calc(16.67% + 40px);
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .timeline-label-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-week-pill {
+            display: inline-flex;
+            align-items: center;
+            background: #111827;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-node {
+            width: 10px;
+            height: 10px;
+            background: #111827;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cards grid */
+        .timeline-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        /* Individual card */
+        .timeline-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+            border: 1px solid #eef2f6;
+            padding: 32px;
+        }
+
+        .timeline-card h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .timeline-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            line-height: 1.55;
+            color: #6b7280;
+            margin-bottom: 14px;
+        }
+
+        .timeline-card-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-check {
+            color: #10b981;
+            font-weight: 600;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* CTA */
+        .timeline-cta-wrapper {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .timeline-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 14px 28px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .timeline-cta:hover,
+        .timeline-cta:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .timeline-cta:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline-labels {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .timeline-labels::before {
+                display: none;
+            }
+
+            .timeline-label-item {
+                display: none;
+            }
+
+            .timeline-cards {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .timeline-card {
+                position: relative;
+                padding-top: 56px;
+            }
+
+            .timeline-card::before {
+                content: attr(data-week);
+                position: absolute;
+                top: 20px;
+                left: 32px;
+                display: inline-flex;
+                align-items: center;
+                background: #111827;
+                color: #fff;
+                font-size: 11px;
+                font-weight: 600;
+                padding: 4px 12px;
+                border-radius: 6px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .timeline-section {
+                padding: 80px 0 100px;
+            }
+
+            .timeline-headline {
+                font-size: 34px;
+            }
+
+            .timeline-card {
+                padding: 24px;
+                padding-top: 52px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2402,6 +2654,116 @@
                     <a href="#slide1" class="cases-nav-dot active" aria-label="View slide 1"></a>
                     <a href="#slide2" class="cases-nav-dot" aria-label="View slide 2"></a>
                     <a href="#slide3" class="cases-nav-dot" aria-label="View slide 3"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Section: Timeline / 8 Weeks
+             =================================== -->
+        <section class="timeline-section">
+            <div class="container">
+                <!-- Header -->
+                <div class="timeline-header">
+                    <!-- Badge -->
+                    <div class="timeline-badge">
+                        <span class="timeline-badge-dot"></span>
+                        <span class="timeline-badge-text">TYPICAL 6–12 WEEK MVP</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h2 class="timeline-headline">
+                        Here's what we can launch together <span class="timeline-headline-emphasis">in about 8 weeks.</span>
+                    </h2>
+
+                    <!-- Subtext -->
+                    <p class="timeline-subtext">
+                        Our build system compresses months of planning and development into a tight 8-week timeline. You get clarity in Week 1, a working prototype by Week 4, and a polished, deployable platform by Week 8.
+                    </p>
+                </div>
+
+                <!-- Timeline labels -->
+                <div class="timeline-labels">
+                    <div class="timeline-label-item">
+                        <span class="timeline-week-pill">WEEK 1 – 2</span>
+                        <span class="timeline-node"></span>
+                    </div>
+                    <div class="timeline-label-item">
+                        <span class="timeline-week-pill">WEEK 3 – 6</span>
+                        <span class="timeline-node"></span>
+                    </div>
+                    <div class="timeline-label-item">
+                        <span class="timeline-week-pill">WEEK 7 – 8</span>
+                        <span class="timeline-node"></span>
+                    </div>
+                </div>
+
+                <!-- Cards grid -->
+                <div class="timeline-cards">
+                    <!-- Card 1 -->
+                    <div class="timeline-card" data-week="WEEK 1–2">
+                        <h3>Deep dive & product blueprint</h3>
+                        <ul class="timeline-card-list">
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Map workflows, systems, and edge cases</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Define success metrics</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Build clickable blueprint</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="timeline-card" data-week="WEEK 3–6">
+                        <h3>Design, build, integrations</h3>
+                        <ul class="timeline-card-list">
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>UX/UI based on how your team already works</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Backend + frontend development</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Weekly demos and iteration</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="timeline-card" data-week="WEEK 7–8">
+                        <h3>Launch & handover</h3>
+                        <ul class="timeline-card-list">
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Data migration + rollout plan</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Training + how-to videos</span>
+                            </li>
+                            <li>
+                                <span class="timeline-check" aria-hidden="true">✓</span>
+                                <span>Post-launch support</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="timeline-cta-wrapper">
+                    <a href="#" class="timeline-cta">
+                        Start Your Project
+                        <span aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </section>
