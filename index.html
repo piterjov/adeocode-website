@@ -3,7 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adeo - Custom Software for Growing Companies</title>
+    <title>Adeocode - Custom Software for Growing Companies</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Adeocode designs and builds custom internal platforms, CRMs, and operational tools for teams that have outgrown spreadsheets and off-the-shelf SaaS.">
+    <meta name="keywords" content="custom software development, CRM development, internal tools, business automation, SaaS development, operational platforms">
+    <meta name="author" content="Adeocode">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://adeocode.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adeocode.com/">
+    <meta property="og:title" content="Adeocode - Custom Software for Growing Companies">
+    <meta property="og:description" content="Custom-built platforms, CRMs, and internal tools tailored exactly to your workflow. Stop duct-taping 12 tools together.">
+    <meta property="og:image" content="https://adeocode.com/assets/images/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Adeocode">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://adeocode.com/">
+    <meta name="twitter:title" content="Adeocode - Custom Software for Growing Companies">
+    <meta name="twitter:description" content="Custom-built platforms, CRMs, and internal tools tailored exactly to your workflow.">
+    <meta name="twitter:image" content="https://adeocode.com/assets/images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/Adeocode Final.svg">
+    <link rel="icon" type="image/png" href="assets/images/Adeocode Final.png">
+    <link rel="apple-touch-icon" href="assets/images/Adeocode Final.png">
+
     <style>
         /* ===================================
            Reset & Base Styles
@@ -76,35 +105,16 @@
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 0;
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 9999px;
-            padding: 6px 14px 6px 6px;
+            gap: 10px;
         }
 
-        .logo-icon {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #111827;
-            border-radius: 4px;
-            position: relative;
-            margin-right: 10px;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 8px;
-            height: 8px;
-            background: #f3f4f5;
-            border-bottom-left-radius: 4px;
+        .logo-icon-img {
+            width: 32px;
+            height: 32px;
         }
 
         .logo-text {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 600;
             color: #111827;
         }
@@ -3059,32 +3069,18 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 16px;
             text-decoration: none;
         }
 
         .footer-logo-icon {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #111827;
-            border-radius: 6px;
-            position: relative;
-        }
-
-        .footer-logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 10px;
-            background: #f3f4f5;
-            border-bottom-left-radius: 4px;
+            width: 36px;
+            height: 36px;
         }
 
         .footer-logo-text {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: #111827;
         }
@@ -3176,6 +3172,272 @@
                 margin-bottom: 16px;
             }
         }
+
+        /* ===================================
+           Founder Section
+           =================================== */
+        .founder-section {
+            background: #ffffff;
+            padding: 120px 0;
+        }
+
+        .founder-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .founder-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 46px;
+            font-weight: 400;
+            color: #111827;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .founder-subheadline {
+            font-size: 16px;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* Image Card */
+        .founder-image-card {
+            position: relative;
+        }
+
+        .founder-image-card img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            display: block;
+            border: 4px solid #fff;
+        }
+
+        /* Bio Card */
+        .founder-bio-card {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+        }
+
+        .founder-name {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .founder-role {
+            font-size: 15px;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .founder-bio {
+            margin-bottom: 32px;
+        }
+
+        .founder-bio p {
+            font-size: 15px;
+            color: #6b7280;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .founder-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .founder-highlights {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 36px 0;
+        }
+
+        .founder-highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .founder-highlights li:last-child {
+            margin-bottom: 0;
+        }
+
+        .founder-check {
+            color: #111827;
+            flex-shrink: 0;
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .founder-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #111827;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 14px 28px;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(17, 24, 39, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .founder-cta:hover,
+        .founder-cta:focus-visible {
+            background: #1f2937;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(17, 24, 39, 0.2);
+        }
+
+        .founder-cta:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .founder-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .founder-cta:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Responsive - Tablet */
+        @media (max-width: 1024px) {
+            .founder-section {
+                padding: 100px 0;
+            }
+
+            .founder-headline {
+                font-size: 40px;
+            }
+
+            .founder-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                max-width: 600px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .founder-image-card {
+                display: flex;
+                justify-content: center;
+            }
+
+            .founder-image-card img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .founder-bio-card {
+                padding: 36px;
+                text-align: left;
+            }
+
+            .founder-cta-wrapper {
+                text-align: center;
+            }
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 640px) {
+            .founder-section {
+                padding: 80px 0;
+            }
+
+            .founder-header {
+                margin-bottom: 48px;
+            }
+
+            .founder-headline {
+                font-size: 34px;
+            }
+
+            .founder-subheadline {
+                font-size: 15px;
+            }
+
+            .founder-grid {
+                gap: 24px;
+            }
+
+            .founder-image-card img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .founder-bio-card {
+                padding: 24px;
+            }
+
+            .founder-name {
+                font-size: 28px;
+            }
+
+            .founder-bio p,
+            .founder-highlights li {
+                font-size: 14px;
+            }
+
+            .founder-cta {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 28px;
+            }
+        }
+
+        /* Disabled Links */
+        .disabled-link {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .nav-link.disabled {
+            cursor: default;
+        }
+
+        .nav-link.disabled::after {
+            display: none;
+        }
+
+        .footer-link-disabled {
+            font-size: 15px;
+            color: #9ca3af;
+            cursor: default;
+        }
+
+        .case-cta.disabled {
+            cursor: default;
+        }
     </style>
 </head>
 <body>
@@ -3185,20 +3447,20 @@
     <div class="nav-wrapper">
         <nav class="navbar" role="navigation" aria-label="Main navigation">
             <!-- Logo Group -->
-            <a href="#" class="logo-group" aria-label="Adeo Home">
-                <div class="logo-icon"></div>
-                <span class="logo-text">Adeo</span>
+            <a href="javascript:void(0)" class="logo-group" aria-label="Adeocode Home">
+                <img src="assets/images/Adeocode Final.svg" alt="Adeocode" class="logo-icon-img">
+                <span class="logo-text">Adeocode</span>
             </a>
 
             <!-- Nav Links -->
             <div class="nav-links">
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Services</a>
-                <a href="#" class="nav-link">Case Studies</a>
+                <span class="nav-link disabled">About</span>
+                <span class="nav-link disabled">Services</span>
+                <span class="nav-link disabled">Case Studies</span>
             </div>
 
             <!-- Nav CTA -->
-            <a href="#" class="nav-cta">Book a Free Strategy Call</a>
+            <a href="javascript:void(0)" class="nav-cta disabled-link">Book a Free Strategy Call</a>
         </nav>
     </div>
 
@@ -3231,8 +3493,8 @@
 
                         <!-- Button Row -->
                         <div class="button-row">
-                            <a href="#" class="btn-primary">Book a 20-minute project fit call</a>
-                            <a href="#" class="btn-secondary">See what we've built for teams like yours</a>
+                            <a href="javascript:void(0)" class="btn-primary disabled-link">Book a 20-minute project fit call</a>
+                            <a href="javascript:void(0)" class="btn-secondary disabled-link">See what we've built for teams like yours</a>
                         </div>
                     </div>
 
@@ -3278,7 +3540,7 @@
                                     </div>
                                     <div class="ui-card-body-title">Welcome back</div>
                                     <div class="ui-card-body-text">Sign in to your account to continue</div>
-                                    <a href="#" class="ui-card-btn">Sign in with Passkey</a>
+                                    <span class="ui-card-btn">Sign in with Passkey</span>
                                     <div class="ui-card-footer">
                                         <span class="ui-card-footer-line"></span>
                                         <span class="ui-card-footer-text">or use email</span>
@@ -3301,7 +3563,7 @@
                                     </div>
                                     <div class="ui-card-body-title">Dashboard</div>
                                     <div class="ui-card-body-text">Track your team's performance in real-time</div>
-                                    <a href="#" class="ui-card-btn">View Analytics</a>
+                                    <span class="ui-card-btn">View Analytics</span>
                                     <div class="ui-card-footer">
                                         <span class="ui-card-footer-line"></span>
                                         <span class="ui-card-footer-text">updated 2m ago</span>
@@ -3324,7 +3586,7 @@
                                     </div>
                                     <div class="ui-card-body-title">Active Routes</div>
                                     <div class="ui-card-body-text">12 vehicles currently en route</div>
-                                    <a href="#" class="ui-card-btn">Manage Fleet</a>
+                                    <span class="ui-card-btn">Manage Fleet</span>
                                     <div class="ui-card-footer">
                                         <span class="ui-card-footer-line"></span>
                                         <span class="ui-card-footer-text">3 deliveries pending</span>
@@ -3347,7 +3609,7 @@
                                     </div>
                                     <div class="ui-card-body-title">Appointments</div>
                                     <div class="ui-card-body-text">8 scheduled for today</div>
-                                    <a href="#" class="ui-card-btn">View Schedule</a>
+                                    <span class="ui-card-btn">View Schedule</span>
                                     <div class="ui-card-footer">
                                         <span class="ui-card-footer-line"></span>
                                         <span class="ui-card-footer-text">next in 15 min</span>
@@ -3388,7 +3650,7 @@
                         </div>
 
                         <!-- CTA Button -->
-                        <a href="#" class="cost-cta">Audit my current stack</a>
+                        <a href="javascript:void(0)" class="cost-cta disabled-link">Audit my current stack</a>
                     </div>
 
                     <!-- Right column: Card -->
@@ -3735,7 +3997,7 @@
                                 <h3>Tax tracking CRM</h3>
                                 <p class="case-subheadline">From spreadsheet chaos to a clear pipeline.</p>
                                 <p class="case-description">We built a custom CRM and workflow engine for a tax firm drowning in spreadsheets. Result: fewer missed follow-ups, faster turnaround, and total visibility.</p>
-                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                                <span class="case-cta disabled">View Case <span aria-hidden="true">→</span></span>
                             </div>
                             <div class="case-card">
                                 <div class="case-card-preview">
@@ -3756,7 +4018,7 @@
                                 <h3>AI-Driven Fulfillment Dashboard</h3>
                                 <p class="case-subheadline">Real-time visibility, fewer errors, faster throughput.</p>
                                 <p class="case-description">We designed a custom AI-powered fulfillment engine that synchronizes orders, inventory, and routing. The result: 40% fewer fulfillment errors and 2× throughput capacity.</p>
-                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                                <span class="case-cta disabled">View Case <span aria-hidden="true">→</span></span>
                             </div>
                             <div class="case-card">
                                 <div class="case-card-preview">
@@ -3777,7 +4039,7 @@
                                 <h3>Underwriting Workflow OS</h3>
                                 <p class="case-subheadline">Replace spreadsheets with a structured underwriting pipeline.</p>
                                 <p class="case-description">A cross-team underwriting workflow with automated status updates, document routing, and audit trails—purpose-built for financial operations.</p>
-                                <a href="#" class="case-cta">View Case <span aria-hidden="true">→</span></a>
+                                <span class="case-cta disabled">View Case <span aria-hidden="true">→</span></span>
                             </div>
                             <div class="case-card">
                                 <div class="case-card-preview">
@@ -3791,9 +4053,9 @@
 
                 <!-- Navigation dots -->
                 <div class="cases-nav">
-                    <a href="#slide1" class="cases-nav-dot active" aria-label="View slide 1"></a>
-                    <a href="#slide2" class="cases-nav-dot" aria-label="View slide 2"></a>
-                    <a href="#slide3" class="cases-nav-dot" aria-label="View slide 3"></a>
+                    <span class="cases-nav-dot active" aria-label="View slide 1"></span>
+                    <span class="cases-nav-dot" aria-label="View slide 2"></span>
+                    <span class="cases-nav-dot" aria-label="View slide 3"></span>
                 </div>
             </div>
         </section>
@@ -3900,7 +4162,7 @@
 
                 <!-- CTA -->
                 <div class="timeline-cta-wrapper">
-                    <a href="#" class="timeline-cta">
+                    <a href="javascript:void(0)" class="timeline-cta disabled-link">
                         Start Your Project
                         <span aria-hidden="true">→</span>
                     </a>
@@ -4382,12 +4644,81 @@
                                 <span>Own something modern, easy to use and aesthetic</span>
                             </li>
                         </ul>
-                        <a href="#" class="final-cta-btn">Book a 20-minute fit call</a>
+                        <a href="javascript:void(0)" class="final-cta-btn disabled-link">Book a 20-minute fit call</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- ===================================
+         Founder Section
+         =================================== -->
+    <section class="founder-section" aria-labelledby="founder-heading">
+        <div class="container">
+            <!-- Header -->
+            <header class="founder-header">
+                <h2 id="founder-heading" class="founder-headline">Meet the founder behind Adeocode.</h2>
+                <p class="founder-subheadline">The engineer who's helped dozens of teams replace chaos with clarity.</p>
+            </header>
+
+            <!-- Two Column Layout -->
+            <div class="founder-grid">
+                <!-- Left: Image Card -->
+                <div class="founder-image-card">
+                    <img src="assets/images/Danilo.jpg" alt="Portrait of Danilo Mališić, Founder of Adeocode">
+                </div>
+
+                <!-- Right: Bio Card -->
+                <article class="founder-bio-card">
+                    <h3 class="founder-name">Danilo Mališić</h3>
+                    <p class="founder-role">Founder & Lead Software Architect</p>
+
+                    <div class="founder-bio">
+                        <p>I've spent my career helping founders replace broken workflows, mismatched tools, and scattered spreadsheets with software that finally fits the way their business actually works.</p>
+                        <p>Every company deserves clean systems, faster operations, and a platform they can scale — without duct-taping 12 tools together.</p>
+                        <p>That's why I built Adeocode: to deliver software that feels custom-tailored, reliable, and built to last.</p>
+                    </div>
+
+                    <ul class="founder-highlights">
+                        <li>
+                            <svg class="founder-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            <span>12+ years of experience in engineering & system design</span>
+                        </li>
+                        <li>
+                            <svg class="founder-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            <span>50+ custom platforms, CRMs, and internal tools shipped</span>
+                        </li>
+                        <li>
+                            <svg class="founder-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            <span>Architect behind multiple 6–7 figure SaaS and ops systems</span>
+                        </li>
+                        <li>
+                            <svg class="founder-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            <span>Specializes in complex workflows, automation, and AI logic</span>
+                        </li>
+                    </ul>
+
+                    <div class="founder-cta-wrapper">
+                        <a href="javascript:void(0)" class="founder-cta disabled-link">
+                            <span>Book a call with Danilo</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
 
     <!-- ===================================
          Footer
@@ -4397,9 +4728,9 @@
             <div class="footer-grid">
                 <!-- Left: Brand -->
                 <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <div class="footer-logo-icon" aria-hidden="true"></div>
-                        <span class="footer-logo-text">Adeo</span>
+                    <a href="javascript:void(0)" class="footer-logo">
+                        <img src="assets/images/Adeocode Final.svg" alt="Adeocode" class="footer-logo-icon">
+                        <span class="footer-logo-text">Adeocode</span>
                     </a>
                     <p class="footer-description">
                         Custom-built platforms, CRMs, and internal<br>
@@ -4411,10 +4742,10 @@
                 <div class="footer-links-column">
                     <h3 class="footer-links-title">Company</h3>
                     <ul class="footer-links">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">ROI Calculator</a></li>
+                        <li><span class="footer-link-disabled">About</span></li>
+                        <li><span class="footer-link-disabled">Case Studies</span></li>
+                        <li><span class="footer-link-disabled">Contact</span></li>
+                        <li><span class="footer-link-disabled">ROI Calculator</span></li>
                     </ul>
                 </div>
 
@@ -4422,11 +4753,11 @@
                 <div class="footer-links-column">
                     <h3 class="footer-links-title">Industries</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Startups & SaaS</a></li>
-                        <li><a href="#">Agencies</a></li>
-                        <li><a href="#">Manufacturing</a></li>
-                        <li><a href="#">Hospitality</a></li>
-                        <li><a href="#">Professional Services</a></li>
+                        <li><span class="footer-link-disabled">Startups & SaaS</span></li>
+                        <li><span class="footer-link-disabled">Agencies</span></li>
+                        <li><span class="footer-link-disabled">Manufacturing</span></li>
+                        <li><span class="footer-link-disabled">Hospitality</span></li>
+                        <li><span class="footer-link-disabled">Professional Services</span></li>
                     </ul>
                 </div>
             </div>
@@ -4512,6 +4843,134 @@
 
             // Initial call
             updateRuler();
+        })();
+
+        // ===================================
+        // ROI Calculator Functionality
+        // ===================================
+        (function() {
+            // Constants for realistic calculations
+            const MONTHS = 5; // Based on footnote "5 months period"
+            const HOURLY_RATE = 75; // Average hourly rate for knowledge workers
+            const EFFICIENCY_GAIN = 0.7; // 70% of lost hours can be recovered
+            const REVENUE_RECOVERY = 0.5; // 50% of lost revenue can be recovered
+            const SAAS_ELIMINATION = 1.0; // 100% of SaaS spend eliminated over period
+            const ADEOCODE_BASE_COST = 6000; // Starter service cost
+
+            // Get slider elements
+            const saasSpendSlider = document.getElementById('saas-spend');
+            const hoursLostSlider = document.getElementById('hours-lost');
+            const revenueLostSlider = document.getElementById('revenue-lost');
+            const teamMembersSlider = document.getElementById('team-members');
+
+            // Get all slider value displays
+            const sliderRows = document.querySelectorAll('.slider-row');
+            const saasSpendValue = sliderRows[0].querySelector('.slider-value');
+            const hoursLostValue = sliderRows[1].querySelector('.slider-value');
+            const revenueLostValue = sliderRows[2].querySelector('.slider-value');
+            const teamMembersValue = sliderRows[3].querySelector('.slider-value');
+
+            // Get summary elements
+            const summaryRows = document.querySelectorAll('.summary-row-value');
+            const timeSavedEl = summaryRows[0];
+            const valueOfTimeEl = summaryRows[1];
+            const revenueUnlockedEl = summaryRows[2];
+            const saasEliminatedEl = summaryRows[3];
+            const adeocodeСostEl = summaryRows[4];
+            const netSavingsEl = document.querySelector('.summary-card-value');
+            const roiMultiplierEl = document.querySelector('.calculator-final-notes .highlight');
+
+            // Format currency
+            function formatCurrency(amount) {
+                return '$' + Math.round(amount).toLocaleString('en-US');
+            }
+
+            // Format hours
+            function formatHours(hours) {
+                return Math.round(hours) + ' hours';
+            }
+
+            // Update slider track fill
+            function updateSliderTrack(slider) {
+                const min = parseFloat(slider.min);
+                const max = parseFloat(slider.max);
+                const value = parseFloat(slider.value);
+                const percentage = ((value - min) / (max - min)) * 100;
+                slider.style.setProperty('--value', percentage + '%');
+            }
+
+            // Calculate and update all values
+            function calculateROI() {
+                // Get current values
+                const saasSpend = parseFloat(saasSpendSlider.value);
+                const hoursLost = parseFloat(hoursLostSlider.value);
+                const revenueLost = parseFloat(revenueLostSlider.value);
+                const teamMembers = parseFloat(teamMembersSlider.value);
+
+                // Update display values
+                saasSpendValue.textContent = formatCurrency(saasSpend);
+                hoursLostValue.textContent = hoursLost + ' hours';
+                revenueLostValue.textContent = formatCurrency(revenueLost);
+                teamMembersValue.textContent = teamMembers;
+
+                // Calculate savings (over 5 month period)
+                // Time saved: hours lost per month × efficiency gain × months
+                // Scale slightly with team size (more team = more coordination overhead saved)
+                const teamMultiplier = 1 + (teamMembers - 1) * 0.02; // 2% more per team member
+                const timeSaved = hoursLost * EFFICIENCY_GAIN * MONTHS * Math.min(teamMultiplier, 2);
+
+                // Value of time: time saved × hourly rate
+                const valueOfTime = timeSaved * HOURLY_RATE;
+
+                // Revenue unlocked: revenue lost × recovery percentage × months
+                const revenueUnlocked = revenueLost * REVENUE_RECOVERY * MONTHS;
+
+                // SaaS eliminated: monthly spend × months
+                const saasEliminated = saasSpend * SAAS_ELIMINATION * MONTHS;
+
+                // Dynamic Adeocode cost based on complexity (team size affects scope)
+                const adecodeCost = ADEOCODE_BASE_COST + (teamMembers > 20 ? (teamMembers - 20) * 50 : 0);
+
+                // Net savings
+                const grossSavings = valueOfTime + revenueUnlocked + saasEliminated;
+                const netSavings = grossSavings - adecodeCost;
+
+                // ROI multiplier
+                const roiMultiplier = adecodeCost > 0 ? (grossSavings / adecodeCost) : 0;
+
+                // Update summary display
+                timeSavedEl.textContent = formatHours(timeSaved);
+                valueOfTimeEl.textContent = formatCurrency(valueOfTime);
+                revenueUnlockedEl.textContent = formatCurrency(revenueUnlocked);
+                saasEliminatedEl.textContent = formatCurrency(saasEliminated);
+                adeocodeСostEl.textContent = '-' + formatCurrency(adecodeCost);
+                netSavingsEl.textContent = formatCurrency(netSavings);
+
+                // Update ROI multiplier
+                if (roiMultiplierEl) {
+                    roiMultiplierEl.textContent = '~' + roiMultiplier.toFixed(1) + '×';
+                }
+
+                // Add visual feedback for positive/negative ROI
+                if (netSavings >= 0) {
+                    netSavingsEl.style.color = '';
+                } else {
+                    netSavingsEl.style.color = '#ef4444';
+                }
+            }
+
+            // Add event listeners to all sliders
+            [saasSpendSlider, hoursLostSlider, revenueLostSlider, teamMembersSlider].forEach(slider => {
+                slider.addEventListener('input', function() {
+                    updateSliderTrack(this);
+                    calculateROI();
+                });
+                // Initialize track fill
+                updateSliderTrack(slider);
+            });
+
+            // Initial calculation
+            calculateROI();
         })();
     </script>
 </body>
