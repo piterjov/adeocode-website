@@ -507,20 +507,34 @@
             padding: 32px;
         }
 
-        /* Different gradients for each card */
-        .screenshot-card:nth-child(1) .screenshot-inner {
+        /* Image-based screenshot cards */
+        .screenshot-inner-img {
+            padding: 0;
+            background: #f9fafb;
+            overflow: hidden;
+        }
+
+        .screenshot-inner-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+        }
+
+        /* Different gradients for each card (fallback) */
+        .screenshot-card:nth-child(1) .screenshot-inner:not(.screenshot-inner-img) {
             background: linear-gradient(to bottom, #dbeafe, #eff6ff);
         }
 
-        .screenshot-card:nth-child(2) .screenshot-inner {
+        .screenshot-card:nth-child(2) .screenshot-inner:not(.screenshot-inner-img) {
             background: linear-gradient(to bottom, #dcfce7, #f0fdf4);
         }
 
-        .screenshot-card:nth-child(3) .screenshot-inner {
+        .screenshot-card:nth-child(3) .screenshot-inner:not(.screenshot-inner-img) {
             background: linear-gradient(to bottom, #fef3c7, #fffbeb);
         }
 
-        .screenshot-card:nth-child(4) .screenshot-inner {
+        .screenshot-card:nth-child(4) .screenshot-inner:not(.screenshot-inner-img) {
             background: linear-gradient(to bottom, #fce7f3, #fdf2f8);
         }
 
@@ -1355,6 +1369,20 @@
 
         .roadmap-status.backlog .roadmap-status-dot {
             background: #9ca3af;
+        }
+
+        /* Roadmap card as image */
+        .roadmap-card-img {
+            margin-top: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .roadmap-card-img img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Bottom features grid */
@@ -3521,6 +3549,14 @@
                                     <span class="ruler-number">04</span>
                                     <span class="ruler-dot"></span>
                                 </div>
+                                <div class="ruler-mark" data-index="4">
+                                    <span class="ruler-number">05</span>
+                                    <span class="ruler-dot"></span>
+                                </div>
+                                <div class="ruler-mark" data-index="5">
+                                    <span class="ruler-number">06</span>
+                                    <span class="ruler-dot"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3529,93 +3565,43 @@
                     <div class="screenshot-slider" id="screenshotSlider">
                         <!-- Card 1: Harbor Tax -->
                         <div class="screenshot-card active" data-index="0">
-                            <div class="screenshot-inner">
-                                <div class="ui-card">
-                                    <div class="ui-card-header">
-                                        <div class="ui-card-icon"></div>
-                                        <div>
-                                            <div class="ui-card-title">Harbor Tax</div>
-                                            <div class="ui-card-subtitle">Tax Management</div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-card-body-title">Welcome back</div>
-                                    <div class="ui-card-body-text">Sign in to your account to continue</div>
-                                    <span class="ui-card-btn">Sign in with Passkey</span>
-                                    <div class="ui-card-footer">
-                                        <span class="ui-card-footer-line"></span>
-                                        <span class="ui-card-footer-text">or use email</span>
-                                        <span class="ui-card-footer-line"></span>
-                                    </div>
-                                </div>
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/hero-showcase/Frame 1597878328.png" alt="Harbor Tax - Secure Authentication" loading="lazy">
                             </div>
                         </div>
 
-                        <!-- Card 2: GreenOps -->
+                        <!-- Card 2: HabitUp -->
                         <div class="screenshot-card" data-index="1">
-                            <div class="screenshot-inner">
-                                <div class="ui-card">
-                                    <div class="ui-card-header">
-                                        <div class="ui-card-icon"></div>
-                                        <div>
-                                            <div class="ui-card-title">GreenOps</div>
-                                            <div class="ui-card-subtitle">Operations Platform</div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-card-body-title">Dashboard</div>
-                                    <div class="ui-card-body-text">Track your team's performance in real-time</div>
-                                    <span class="ui-card-btn">View Analytics</span>
-                                    <div class="ui-card-footer">
-                                        <span class="ui-card-footer-line"></span>
-                                        <span class="ui-card-footer-text">updated 2m ago</span>
-                                        <span class="ui-card-footer-line"></span>
-                                    </div>
-                                </div>
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/hero-showcase/Frame 1597878326.png" alt="HabitUp - Productivity and Healthy Habits" loading="lazy">
                             </div>
                         </div>
 
-                        <!-- Card 3: FleetSync -->
+                        <!-- Card 3: Video Editor -->
                         <div class="screenshot-card" data-index="2">
-                            <div class="screenshot-inner">
-                                <div class="ui-card">
-                                    <div class="ui-card-header">
-                                        <div class="ui-card-icon"></div>
-                                        <div>
-                                            <div class="ui-card-title">FleetSync</div>
-                                            <div class="ui-card-subtitle">Logistics CRM</div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-card-body-title">Active Routes</div>
-                                    <div class="ui-card-body-text">12 vehicles currently en route</div>
-                                    <span class="ui-card-btn">Manage Fleet</span>
-                                    <div class="ui-card-footer">
-                                        <span class="ui-card-footer-line"></span>
-                                        <span class="ui-card-footer-text">3 deliveries pending</span>
-                                        <span class="ui-card-footer-line"></span>
-                                    </div>
-                                </div>
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/hero-showcase/Frame 1597878327.png" alt="Video Editor - AI-Powered Editing" loading="lazy">
                             </div>
                         </div>
 
-                        <!-- Card 4: MedPortal -->
+                        <!-- Card 4: Earnings Call HQ -->
                         <div class="screenshot-card" data-index="3">
-                            <div class="screenshot-inner">
-                                <div class="ui-card">
-                                    <div class="ui-card-header">
-                                        <div class="ui-card-icon"></div>
-                                        <div>
-                                            <div class="ui-card-title">MedPortal</div>
-                                            <div class="ui-card-subtitle">Patient Management</div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-card-body-title">Appointments</div>
-                                    <div class="ui-card-body-text">8 scheduled for today</div>
-                                    <span class="ui-card-btn">View Schedule</span>
-                                    <div class="ui-card-footer">
-                                        <span class="ui-card-footer-line"></span>
-                                        <span class="ui-card-footer-text">next in 15 min</span>
-                                        <span class="ui-card-footer-line"></span>
-                                    </div>
-                                </div>
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/hero-showcase/Frame 1597878331.png" alt="EarningsCallHQ - Market Intelligence" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Meducation -->
+                        <div class="screenshot-card" data-index="4">
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/projects/ai-powered-medical-learning.png" alt="Meducation - AI-Powered Medical Learning Platform" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Harbor Tax Dashboard -->
+                        <div class="screenshot-card" data-index="5">
+                            <div class="screenshot-inner screenshot-inner-img">
+                                <img src="assets/images/adeo/projects/tax-tracking.png" alt="HarborTax - Tax Tracking Dashboard" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -3808,53 +3794,9 @@
                         <h3>Custom-Built from the first step</h3>
                         <p>From the roadmap to the product blueprint, every decision is tailored to your business — ensuring the final platform feels natural to your team from day one.</p>
 
-                        <!-- Roadmap card -->
-                        <div class="roadmap-card">
-                            <div class="roadmap-title">Your SaaS Development Roadmap</div>
-
-                            <div class="roadmap-item">
-                                <div>
-                                    <div class="roadmap-label">Strategy Call</div>
-                                    <div class="roadmap-desc">Clarifying goals, challenges, and the core outline.</div>
-                                </div>
-                                <div class="roadmap-status done">
-                                    <span class="roadmap-status-dot"></span>
-                                    done
-                                </div>
-                            </div>
-
-                            <div class="roadmap-item">
-                                <div>
-                                    <div class="roadmap-label">Market & Workflow Analysis</div>
-                                    <div class="roadmap-desc">Reviewing your current processes, tools, and workflows.</div>
-                                </div>
-                                <div class="roadmap-status done">
-                                    <span class="roadmap-status-dot"></span>
-                                    done
-                                </div>
-                            </div>
-
-                            <div class="roadmap-item">
-                                <div>
-                                    <div class="roadmap-label">Product Blueprint</div>
-                                    <div class="roadmap-desc">Defining the system architecture: features, data flows, and automations.</div>
-                                </div>
-                                <div class="roadmap-status in-progress">
-                                    <span class="roadmap-status-dot"></span>
-                                    In Progress
-                                </div>
-                            </div>
-
-                            <div class="roadmap-item">
-                                <div>
-                                    <div class="roadmap-label">Technical Scoping</div>
-                                    <div class="roadmap-desc">Detailed technical specifications and timeline.</div>
-                                </div>
-                                <div class="roadmap-status backlog">
-                                    <span class="roadmap-status-dot"></span>
-                                    backlog
-                                </div>
-                            </div>
+                        <!-- Roadmap card image -->
+                        <div class="roadmap-card-img">
+                            <img src="assets/images/adeo/one-platform-that/custom-built.png" alt="Your SaaS Development Roadmap - Strategy Call, Market Analysis, Product Blueprint, Technical Scoping" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -4607,7 +4549,7 @@
                 <div class="final-cta-grid">
                     <!-- Left image card -->
                     <div class="final-cta-image-card">
-                        <!-- Placeholder gradient background acts as image -->
+                        <img src="assets/images/adeo/cta-section.png" alt="Custom tailored software - perfect fit for your business" loading="lazy">
                         <div class="final-cta-image-overlay">
                             <p class="final-cta-image-text">
                                 Too tight? Too loose?<br>
