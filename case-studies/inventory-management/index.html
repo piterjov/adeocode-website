@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System Case Study - Adeocode</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="How we built a high-performance inventory management system that handles 1M+ SKUs, processes 10K CSV imports in under 3 minutes, and integrates with Square POS for retail operations.">
+    <meta name="keywords" content="inventory management system, retail software, Square POS integration, warehouse management, CSV import, custom software development">
+    <meta name="author" content="Adeocode">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://adeocode.com/case-studies/inventory-management/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://adeocode.com/case-studies/inventory-management/">
+    <meta property="og:title" content="Inventory Management System Case Study - Adeocode">
+    <meta property="og:description" content="How we replaced a crashing legacy system with a modern platform that handles 1M+ SKUs and integrates seamlessly with Square POS.">
+    <meta property="og:image" content="https://adeocode.com/assets/images/og-case-study-aims.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Adeocode">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://adeocode.com/case-studies/inventory-management/">
+    <meta name="twitter:title" content="Inventory Management System Case Study - Adeocode">
+    <meta name="twitter:description" content="How we replaced a crashing legacy system with a modern platform that handles 1M+ SKUs.">
+    <meta name="twitter:image" content="https://adeocode.com/assets/images/og-case-study-aims.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Inventory Management System for High-Volume Retail Operations",
+        "description": "Case study: How Adeocode built a custom inventory management system that handles 1M+ SKUs with Square POS integration for event-based retail.",
+        "author": {
+            "@type": "Organization",
+            "name": "Adeocode"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Adeocode",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://adeocode.com/assets/images/Adeocode Final.svg"
+            }
+        },
+        "datePublished": "2025-02-01",
+        "dateModified": "2025-12-07",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://adeocode.com/case-studies/inventory-management/"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/Adeocode Final.svg">
+    <link rel="icon" type="image/png" href="../../assets/images/Adeocode Final.png">
+    <link rel="apple-touch-icon" href="../../assets/images/Adeocode Final.png">
+
+    <style>
+        /* ===================================
+           Reset & Base Styles
+           =================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+            background-color: #f3f4f5;
+            color: #111827;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===================================
+           Container
+           =================================== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* ===================================
+           Floating Navbar
+           =================================== */
+        .nav-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+        }
+
+        .navbar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            background: #fff;
+            border-radius: 9999px;
+            padding: 12px 16px 12px 12px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon-img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: #111827;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #111827;
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus-visible::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            background: #111827;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-cta:hover,
+        .nav-cta:focus-visible {
+            background: #1f2937;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                gap: 20px;
+                padding: 10px 14px 10px 10px;
+            }
+            .nav-links {
+                gap: 16px;
+            }
+            .nav-cta {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            .navbar {
+                gap: 16px;
+            }
+        }
+
+        /* ===================================
+           Case Study Hero
+           =================================== */
+        .case-hero {
+            padding: 140px 0 80px;
+        }
+
+        .case-hero-inner {
+            max-width: 900px;
+        }
+
+        .case-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .case-breadcrumb a {
+            font-size: 14px;
+            color: #6b7280;
+            transition: color 0.2s ease;
+        }
+
+        .case-breadcrumb a:hover {
+            color: #111827;
+        }
+
+        .case-breadcrumb span {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .case-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .case-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #4b5563;
+        }
+
+        .case-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .case-hero-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 52px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        .case-hero-headline em {
+            font-style: italic;
+        }
+
+        .case-hero-subheadline {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .case-hero {
+                padding: 120px 0 60px;
+            }
+            .case-hero-headline {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .case-hero-headline {
+                font-size: 32px;
+            }
+            .case-hero-subheadline {
+                font-size: 16px;
+            }
+        }
+
+        /* ===================================
+           Metrics Grid
+           =================================== */
+        .metrics-section {
+            padding: 0 0 80px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .metric-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            border: 1px solid #eef2f6;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .metric-value-highlight {
+            color: #3b82f6;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .metric-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1000px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .metric-value {
+                font-size: 28px;
+            }
+        }
+
+        /* ===================================
+           Content Sections
+           =================================== */
+        .case-section {
+            padding: 80px 0;
+        }
+
+        .case-section-alt {
+            background: linear-gradient(180deg, #e9f2fb 0%, #d7e9f9 100%);
+        }
+
+        .case-section-white {
+            background: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            margin-bottom: 20px;
+        }
+
+        .section-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #111827;
+            border-radius: 50%;
+        }
+
+        .section-badge-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #4b5563;
+        }
+
+        .section-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.15;
+            color: #111827;
+            margin: 0 auto 20px;
+            max-width: 800px;
+        }
+
+        .section-headline em {
+            font-style: italic;
+        }
+
+        .section-subheadline {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6b7280;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .section-headline {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .case-section {
+                padding: 60px 0;
+            }
+            .section-headline {
+                font-size: 28px;
+            }
+        }
+
+        /* ===================================
+           Problem Cards
+           =================================== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            border: 1px solid #eef2f6;
+        }
+
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            background: #fee2e2;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .problem-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #dc2626;
+        }
+
+        .problem-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .problem-body {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        @media (max-width: 900px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===================================
+           Solution Features
+           =================================== */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .solution-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+        }
+
+        .solution-icon {
+            width: 48px;
+            height: 48px;
+            background: #dbeafe;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .solution-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #2563eb;
+        }
+
+        .solution-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .solution-body {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        @media (max-width: 1000px) {
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===================================
+           Results Table
+           =================================== */
+        .results-table-wrapper {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            border: 1px solid #eef2f6;
+            overflow-x: auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .results-table th {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #f9fafb;
+        }
+
+        .results-table th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .results-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .results-table td {
+            font-size: 15px;
+            color: #111827;
+        }
+
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .results-table .improvement {
+            font-weight: 600;
+            color: #059669;
+        }
+
+        .results-table .before {
+            color: #dc2626;
+        }
+
+        .results-table .after {
+            color: #059669;
+        }
+
+        /* ===================================
+           Quote Section
+           =================================== */
+        .quote-section {
+            padding: 80px 0;
+            background: #111827;
+        }
+
+        .quote-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 32px;
+            color: #3b82f6;
+        }
+
+        .quote-text {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 28px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #fff;
+            margin-bottom: 32px;
+        }
+
+        .quote-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .quote-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .quote-author-info {
+            text-align: left;
+        }
+
+        .quote-author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .quote-author-role {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 640px) {
+            .quote-text {
+                font-size: 22px;
+            }
+        }
+
+        /* ===================================
+           Tech Stack
+           =================================== */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+            border: 1px solid #eef2f6;
+        }
+
+        .tech-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .tech-desc {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 900px) {
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===================================
+           Final CTA Section
+           =================================== */
+        .final-cta-section {
+            padding: 100px 0 120px;
+        }
+
+        .final-cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .final-cta-image-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .final-cta-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .final-cta-dark-card {
+            background: #111827;
+            border-radius: 24px;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .final-cta-dark-headline {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .final-cta-dark-body {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #9ca3af;
+            margin-bottom: 28px;
+        }
+
+        .final-cta-checklist {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .final-cta-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #e5e7eb;
+        }
+
+        .final-cta-check {
+            color: #10b981;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+            background: #fff;
+            padding: 14px 32px;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: fit-content;
+        }
+
+        .final-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 900px) {
+            .final-cta-grid {
+                grid-template-columns: 1fr;
+            }
+            .final-cta-image-card {
+                min-height: 300px;
+            }
+            .final-cta-dark-headline {
+                font-size: 26px;
+            }
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+        .site-footer {
+            background: #111827;
+            padding: 80px 0 40px;
+            color: #fff;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .footer-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #9ca3af;
+        }
+
+        .footer-links-column h3 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: #d1d5db;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-link-disabled {
+            font-size: 14px;
+            color: #6b7280;
+            cursor: default;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 24px;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===================================
+         Navbar
+         =================================== -->
+    <nav class="nav-wrapper" aria-label="Main navigation">
+        <div class="navbar">
+            <a href="/" class="logo-group" aria-label="Adeocode Home">
+                <img src="../../assets/images/Adeocode Final.svg" alt="Adeocode" class="logo-icon-img">
+                <span class="logo-text">Adeocode</span>
+            </a>
+            <div class="nav-links">
+                <a href="/#services" class="nav-link">Services</a>
+                <a href="/#testimonials" class="nav-link">Testimonials</a>
+                <a href="/case-studies/inventory-management/" class="nav-link" style="color: #111827;">Case Studies</a>
+            </div>
+            <a href="https://calendly.com/adeocode/intro" target="_blank" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ===================================
+             Hero Section
+             =================================== -->
+        <section class="case-hero">
+            <div class="container">
+                <div class="case-hero-inner">
+                    <nav class="case-breadcrumb" aria-label="Breadcrumb">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <a href="/case-studies/">Case Studies</a>
+                        <span>/</span>
+                        <span style="color: #111827;">Inventory Management</span>
+                    </nav>
+
+                    <div class="case-badge-row">
+                        <span class="case-badge">
+                            <span class="case-badge-dot"></span>
+                            Retail Tech
+                        </span>
+                        <span class="case-badge">
+                            <span class="case-badge-dot"></span>
+                            Square POS
+                        </span>
+                        <span class="case-badge">
+                            <span class="case-badge-dot"></span>
+                            Operations
+                        </span>
+                    </div>
+
+                    <h1 class="case-hero-headline">
+                        How we built an inventory system that handles <em>1 million SKUs</em> without breaking a sweat
+                    </h1>
+
+                    <p class="case-hero-subheadline">
+                        A Southern California retail operation was drowning in spreadsheets, crashing imports, and a legacy system that couldn't keep up. We built them a modern platform that processes 10,000 SKU uploads in under 3 minutes and syncs seamlessly with Square POS.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Metrics Section
+             =================================== -->
+        <section class="metrics-section">
+            <div class="container">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value metric-value-highlight">85%</div>
+                        <div class="metric-label">Faster Imports</div>
+                        <div class="metric-desc">CSV upload speed improved from 20+ minutes to under 3 minutes</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">99.7%</div>
+                        <div class="metric-label">Sync Accuracy</div>
+                        <div class="metric-desc">Up from 80% — reliable data across all 3 locations</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">14 wks</div>
+                        <div class="metric-label">Build Time</div>
+                        <div class="metric-desc">From discovery to production launch</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">1M+</div>
+                        <div class="metric-label">SKUs Managed</div>
+                        <div class="metric-desc">Sub-second queries on massive inventory</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             The Problem Section
+             =================================== -->
+        <section class="case-section case-section-alt">
+            <div class="container">
+                <header class="section-header">
+                    <div class="section-badge">
+                        <span class="section-badge-dot"></span>
+                        <span class="section-badge-text">The Challenge</span>
+                    </div>
+                    <h2 class="section-headline">
+                        Their legacy system was <em>bleeding time and money</em>
+                    </h2>
+                    <p class="section-subheadline">
+                        Every event launch felt like a crisis. Staff panicked. Systems crashed. Data didn't match. Sound familiar?
+                    </p>
+                </header>
+
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">CSV Imports Crashed Before Events</h3>
+                        <p class="problem-body">
+                            When brand manifests arrived with 3,000-10,000 SKUs, the system would choke. Time-critical uploads before events caused timeouts, crashes, and panic. A single invalid row killed the entire import.
+                        </p>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">No Real-Time POS Sync</h3>
+                        <p class="problem-body">
+                            Manual data entry between the warehouse system and Square POS meant hours of lag. Inventory counts never matched. Staff wasted time on duplicate entry across multiple systems.
+                        </p>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">Event Setup Took 4+ Hours</h3>
+                        <p class="problem-body">
+                            With 1M+ SKUs in the library but only 100K needed per event, there was no way to sync selectively. Every event required hours of manual adjustments and no visibility into event profitability.
+                        </p>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">No Visibility Into Errors</h3>
+                        <p class="problem-body">
+                            When imports failed, nobody knew why. Generic error messages left analysts guessing. Developer intervention was required hours before critical events just to figure out what went wrong.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Solution Section
+             =================================== -->
+        <section class="case-section case-section-white">
+            <div class="container">
+                <header class="section-header">
+                    <div class="section-badge">
+                        <span class="section-badge-dot"></span>
+                        <span class="section-badge-text">The Solution</span>
+                    </div>
+                    <h2 class="section-headline">
+                        We built a system designed for <em>high-volume operations</em>
+                    </h2>
+                    <p class="section-subheadline">
+                        A domain-driven architecture that handles massive scale without breaking, with seamless Square POS integration.
+                    </p>
+                </header>
+
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Queue-Driven CSV Imports</h3>
+                        <p class="solution-body">
+                            Async processing with 1,000-row chunking. Upload 10,000 SKUs in under 3 minutes. Row-level error feedback shows exactly what failed — no more mystery crashes.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Two-Way Square Sync</h3>
+                        <p class="solution-body">
+                            30-minute automated sync intervals. Push catalog changes to Square, pull sales transactions back. 99.7% accuracy across all locations — no more manual reconciliation.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Event-Scoped Operations</h3>
+                        <p class="solution-body">
+                            Selective syncing means only relevant SKUs (100K of 1M) go to each location. Event setup dropped from 4+ hours to under 30 minutes. Track profitability by event.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Bulk Pricing Engine</h3>
+                        <p class="solution-body">
+                            Apply "65% OFF MSRP" across thousands of items instantly. MySQL stored procedures handle bulk updates in seconds. No more item-by-item price changes before events.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Real-Time KPI Dashboard</h3>
+                        <p class="solution-body">
+                            Total inventory value, sales trends, low stock alerts — all at a glance. Built with shadcn-vue for fast, responsive interfaces that work on warehouse tablets.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">Audit Trail & Error Logs</h3>
+                        <p class="solution-body">
+                            Every import logged with metrics. Row-level error messages with line numbers. Finally, complete visibility into what's happening — no more developer panic calls.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Results Section
+             =================================== -->
+        <section class="case-section">
+            <div class="container">
+                <header class="section-header">
+                    <div class="section-badge">
+                        <span class="section-badge-dot"></span>
+                        <span class="section-badge-text">The Results</span>
+                    </div>
+                    <h2 class="section-headline">
+                        From panic to <em>confidence</em>
+                    </h2>
+                    <p class="section-subheadline">
+                        The system launched successfully for the February 2025 event cycle with zero import failures across 3 warehouse locations.
+                    </p>
+                </header>
+
+                <div class="results-table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Before</th>
+                                <th>After</th>
+                                <th>Improvement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CSV Upload Speed (10K rows)</td>
+                                <td class="before">~20 minutes</td>
+                                <td class="after">&lt; 3 minutes</td>
+                                <td class="improvement">85% faster</td>
+                            </tr>
+                            <tr>
+                                <td>Import Error Visibility</td>
+                                <td class="before">None (fatal on first error)</td>
+                                <td class="after">Row-level feedback</td>
+                                <td class="improvement">100% visibility</td>
+                            </tr>
+                            <tr>
+                                <td>Square Sync Accuracy</td>
+                                <td class="before">~80%</td>
+                                <td class="after">99.7%</td>
+                                <td class="improvement">24.6% improvement</td>
+                            </tr>
+                            <tr>
+                                <td>Event Setup Time</td>
+                                <td class="before">&gt; 4 hours</td>
+                                <td class="after">&lt; 30 minutes</td>
+                                <td class="improvement">87.5% time saved</td>
+                            </tr>
+                            <tr>
+                                <td>Operator Confidence</td>
+                                <td class="before">Low (panic before events)</td>
+                                <td class="after">High</td>
+                                <td class="improvement">Transformational</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Quote Section
+             =================================== -->
+        <section class="quote-section">
+            <div class="container">
+                <div class="quote-inner">
+                    <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <p class="quote-text">
+                        For the first time in three years, our warehouse team didn't panic before opening day. Uploads worked. Numbers matched. Square was in sync.
+                    </p>
+                    <div class="quote-author">
+                        <div class="quote-avatar">ST</div>
+                        <div class="quote-author-info">
+                            <div class="quote-author-name">Scott T.</div>
+                            <div class="quote-author-role">Operations Director, Warehouse Sales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Tech Stack Section
+             =================================== -->
+        <section class="case-section case-section-white">
+            <div class="container">
+                <header class="section-header">
+                    <div class="section-badge">
+                        <span class="section-badge-dot"></span>
+                        <span class="section-badge-text">Tech Stack</span>
+                    </div>
+                    <h2 class="section-headline">
+                        Built on <em>modern, battle-tested</em> foundations
+                    </h2>
+                </header>
+
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-name">Laravel 12</div>
+                        <div class="tech-desc">Backend Framework</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Vue 3 + TypeScript</div>
+                        <div class="tech-desc">Frontend</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Inertia 2</div>
+                        <div class="tech-desc">SPA Bridge</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">shadcn-vue</div>
+                        <div class="tech-desc">UI Components</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">MySQL 8</div>
+                        <div class="tech-desc">Database</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Redis + Horizon</div>
+                        <div class="tech-desc">Queue Processing</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">Square API</div>
+                        <div class="tech-desc">POS Integration</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-name">DigitalOcean</div>
+                        <div class="tech-desc">Cloud Hosting</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             Final CTA Section
+             =================================== -->
+        <section class="final-cta-section">
+            <div class="container">
+                <div class="final-cta-grid">
+                    <div class="final-cta-image-card">
+                        <img src="../../assets/images/adeo/cta-section.png" alt="Custom software - perfect fit for your business" loading="lazy">
+                    </div>
+
+                    <div class="final-cta-dark-card">
+                        <h2 class="final-cta-dark-headline">
+                            Dealing with similar operational headaches?
+                        </h2>
+                        <p class="final-cta-dark-body">
+                            If your team is juggling spreadsheets, crashing imports, and systems that don't talk to each other — we've seen it before. Let's build something that actually works.
+                        </p>
+                        <ul class="final-cta-checklist">
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">&#10003;</span>
+                                <span>High-volume CSV/data processing that doesn't crash</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">&#10003;</span>
+                                <span>POS/ERP integrations that stay in sync</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">&#10003;</span>
+                                <span>Custom workflows built for how you actually operate</span>
+                            </li>
+                            <li>
+                                <span class="final-cta-check" aria-hidden="true">&#10003;</span>
+                                <span>Modern, fast interfaces your team will love</span>
+                            </li>
+                        </ul>
+                        <a href="https://calendly.com/adeocode/intro" target="_blank" class="final-cta-btn">Book a 20-minute intro call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================
+         Footer
+         =================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <img src="../../assets/images/Adeocode Final.svg" alt="Adeocode" class="footer-logo-icon">
+                        <span class="footer-logo-text">Adeocode</span>
+                    </a>
+                    <p class="footer-description">
+                        Custom-built platforms, CRMs, and internal<br>
+                        tools tailored exactly to your workflow.
+                    </p>
+                </div>
+
+                <div class="footer-links-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><span class="footer-link-disabled">About</span></li>
+                        <li><a href="/case-studies/inventory-management/">Case Studies</a></li>
+                        <li><span class="footer-link-disabled">Contact</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-column">
+                    <h3>Industries</h3>
+                    <ul class="footer-links">
+                        <li><span class="footer-link-disabled">Retail & Inventory</span></li>
+                        <li><span class="footer-link-disabled">Startups & SaaS</span></li>
+                        <li><span class="footer-link-disabled">Professional Services</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2024 Adeocode. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
